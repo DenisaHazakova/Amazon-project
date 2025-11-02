@@ -1,0 +1,23 @@
+.navbar {
+    background-color: rgb(19, 25, 33);
+}
+
+.orders {
+    color: white;
+}
+
+.cart {
+    color: white;
+}
+
+.items__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px ,min-content));
+    gap: 3rem;
+}
+
+.item__photo {
+    /* test purposes delete later */
+    width: 6rem;
+    height: auto;
+}

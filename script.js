@@ -391,6 +391,15 @@ function renderShopItems() {
     title.innerHTML = product.name;
     //append title to its parent
     itemContainerEl.appendChild(title);
+
+    //create p element for ratingCount
+    const ratingCount = document.createElement('p');
+    //assign the class to ratingCount
+    ratingCount.classList.add('product__ratingCount');
+    //assign the innerHTML
+    ratingCount.innerHTML = product.ratingCount
+    //append the ratingCount to its parent
+    itemContainerEl.appendChild(ratingCount);
     
 }
 }

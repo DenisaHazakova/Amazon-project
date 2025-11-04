@@ -430,6 +430,17 @@ function renderShopItems() {
 
     //render select element with function renderQuantityDropdown
     renderQuantityDropdown(10);
+
+    //create button
+    const btnAddCart = document.createElement('button');
+    //assign the class
+    btnAddCart.classList.add('btnAddCart');
+    //assign the innerHTML
+    btnAddCart.innerHTML = 'Add to Cart';
+    //assign the id to button according the id of product
+    btnAddCart.id = product.id;
+    //append the buttton to its parent
+    itemContainerEl.appendChild(btnAddCart);
     
 }
 }

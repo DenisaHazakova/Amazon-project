@@ -1,4 +1,4 @@
-const itemsList = [
+const productList = [
   {
     id: 1,
     imgSrc: "/img/products/athletic-cotton-socks-6-pairs.jpg",
@@ -337,11 +337,11 @@ const itemsList = [
   },
 ];
 
-const itemsListEl = document.querySelector(".items__list");
+const itemContainerEl = document.querySelector(".item__container");
 
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
-  // renderShopItems();
+  renderShopItems();
   renderQuantityDropdown(10);
 });
 
@@ -351,7 +351,7 @@ function renderQuantityDropdown(quantityMax) {
   //assign a class
   select.classList.add("item__quantity");
   //append select to its parent
-  itemsListEl.appendChild(select);
+  itemContainerEl.appendChild(select);
   //create for cycle
   for (let i = 1; i <= quantityMax; i++) {
     //create option element
@@ -367,4 +367,21 @@ function renderQuantityDropdown(quantityMax) {
     //append it to its parent select
     select.appendChild(option);
   }
+}
+
+function renderShopItems() {
+  //render through the object itemsList
+  for (const product of productList) {
+    //create img element
+    const img = document.createElement("img");
+    //assign src from object productList
+    img.src = product.imgSrc;
+    //assign alt attribute to img
+    img.alt = product.name;
+    // assign class to img
+    img.classList.add('product__photo');
+    //append image to itemContainer
+    itemContainerEl.appendChild(img);
+    
+}
 }

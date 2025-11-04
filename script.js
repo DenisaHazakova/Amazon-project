@@ -400,6 +400,15 @@ function renderShopItems() {
     ratingCount.innerHTML = product.ratingCount
     //append the ratingCount to its parent
     itemContainerEl.appendChild(ratingCount);
+
+    //create p element for price
+    const price = document.createElement('p');
+    //assign the class 
+    price.classList.add('product__price');
+    //assign the innerHTML 
+    price.innerHTML = '$' + product.price;
+    //append to parent
+    itemContainerEl.appendChild(price);
     
 }
 }

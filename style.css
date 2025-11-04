@@ -13,7 +13,7 @@
 
 .item__container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, min-content));
    margin: 2rem 0;
 }
 

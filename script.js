@@ -349,6 +349,8 @@ function renderQuantityDropdown(quantityMax) {
   const select = document.createElement("select");
   //assign a class
   select.classList.add("item__quantity");
+  //assign a name attribute
+  select.name = 'quantities';
   //append select to its parent
   itemContainerEl.appendChild(select);
   //create for cycle

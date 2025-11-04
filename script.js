@@ -392,6 +392,25 @@ function renderShopItems() {
     //append title to its parent
     itemContainerEl.appendChild(title);
 
+    //create element for rating stars
+    const ratingStars = document.createElement('img');
+    //assign the class
+    ratingStars.classList.add('product__rating');
+    //assign the img source according the rating of product
+    if(product.rating === 3.5) {
+        ratingStars.src = '/img/ratings/rating-35.png'
+    } else if (product.rating === 4.0) {
+        ratingStars.src = '/img/ratings/rating-40.png'
+    } else if (product.rating === 4.5) {
+        ratingStars.src = '/img/ratings/rating-45.png'
+    } else {
+        ratingStars.src = '/img/ratings/rating-50.png'
+    }
+    //assign alt attribute
+    ratingStars.alt = 'Rating ' + product.rating;
+    //append the ratingStars to its parent
+    itemContainerEl.appendChild(ratingStars);
+
     //create p element for ratingCount
     const ratingCount = document.createElement('p');
     //assign the class to ratingCount

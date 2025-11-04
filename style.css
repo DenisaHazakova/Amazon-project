@@ -10,3 +10,13 @@
     color: white;
 }
 
+
+.item__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+   margin: 2rem 0;
+}
+
+.product__photo {
+    width: 4rem;
+}

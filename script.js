@@ -342,7 +342,6 @@ const itemContainerEl = document.querySelector(".item__container");
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
   renderShopItems();
-  renderQuantityDropdown(10);
 });
 
 function renderQuantityDropdown(quantityMax) {
@@ -428,6 +427,9 @@ function renderShopItems() {
     price.innerHTML = '$' + product.price;
     //append to parent
     itemContainerEl.appendChild(price);
+
+    //render select element with function renderQuantityDropdown
+    renderQuantityDropdown(10);
     
 }
 }

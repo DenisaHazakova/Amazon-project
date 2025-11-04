@@ -382,6 +382,15 @@ function renderShopItems() {
     img.classList.add('product__photo');
     //append image to itemContainer
     itemContainerEl.appendChild(img);
+
+    //create p element for title
+    const title = document.createElement('p');
+    //assign the class to title
+    title.classList.add('product__name');
+    //assign the inner HTML value to it
+    title.innerHTML = product.name;
+    //append title to its parent
+    itemContainerEl.appendChild(title);
     
 }
 }

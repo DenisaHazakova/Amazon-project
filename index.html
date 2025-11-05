@@ -8,20 +8,38 @@
   </head>
   <body>
     <nav class="navbar">
-      <img src="/img/amazon-logo-white.png" alt="Amazon icon" />
-      <input type="text" class="search__bar" placeholder="Search" />
-      <button class="search__btn">
-        <img src="/img/icons/search-icon.png" alt="Search icon" />
-      </button>
-      <p class="orders">Returns & Orders</p>
-      <div class="cart">
-        <img src="" alt="Shopping cart" />
-        <p class="cart">Cart</p>
+      <img
+        src="/img/amazon-logo-white.png"
+        alt="Amazon icon"
+        class="amazon__logo"
+      />
+      <div class="searchbar">
+        <input type="text" class="search__input" placeholder="Search" />
+        <button type="submit" class="search__btn">
+          <img
+            src="/img/icons/search-icon.png"
+            alt="Search icon"
+            class="search-icon"
+          />
+        </button>
+      </div>
+      <div class="returns-orders">
+        <div class="returns-orders__text">
+          <p class="returns">Returns</p>
+          <p class="orders">& Orders</p>
+        </div>
+
+        <div class="cart">
+          <img
+            src="/img/icons/cart-icon.png"
+            alt="Shopping cart"
+            class="shopping-cart-icon"
+          />
+          <p class="cartText">Cart</p>
+        </div>
       </div>
     </nav>
-    <div class="items__list">
-      <div class="item__container"></div>
-    </div>
+    <div class="items__list"></div>
     <script src="script.js"></script>
   </body>
 </html>

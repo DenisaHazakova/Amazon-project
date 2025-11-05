@@ -337,22 +337,22 @@ const productList = [
   },
 ];
 
-const itemContainerEl = document.querySelector(".item__container");
+const itemsListEl = document.querySelector(".items__list");
 
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
   renderShopItems();
+  renderQuantityDropdown(10);
 });
 
-function renderQuantityDropdown(quantityMax) {
+function renderQuantityDropdown(parentEl, quantityMax) {
   //create select element
   const select = document.createElement("select");
   //assign a class
   select.classList.add("item__quantity");
   //assign a name attribute
-  select.name = 'quantities';
-  //append select to its parent
-  itemContainerEl.appendChild(select);
+  select.name = "quantities";
+  
   //create for cycle
   for (let i = 1; i <= quantityMax; i++) {
     //create option element
@@ -367,12 +367,19 @@ function renderQuantityDropdown(quantityMax) {
     }
     //append it to its parent select
     select.appendChild(option);
+
+    //append the select to the same container passed in
+    parentEl.appendChild(select);
   }
 }
 
 function renderShopItems() {
   //render through the object itemsList
   for (const product of productList) {
+    // create div element
+    const itemContainerEl = document.createElement("div");
+    //assign the class
+    itemContainerEl.classList.add("item__container");
     //create img element
     const img = document.createElement("img");
     //assign src from object productList
@@ -380,69 +387,71 @@ function renderShopItems() {
     //assign alt attribute to img
     img.alt = product.name;
     // assign class to img
-    img.classList.add('product__photo');
+    img.classList.add("product__photo");
     //append image to itemContainer
     itemContainerEl.appendChild(img);
 
     //create p element for title
-    const title = document.createElement('p');
+    const title = document.createElement("p");
     //assign the class to title
-    title.classList.add('product__name');
+    title.classList.add("product__name");
     //assign the inner HTML value to it
     title.innerHTML = product.name;
     //append title to its parent
     itemContainerEl.appendChild(title);
 
     //create element for rating stars
-    const ratingStars = document.createElement('img');
+    const ratingStars = document.createElement("img");
     //assign the class
-    ratingStars.classList.add('product__rating');
+    ratingStars.classList.add("product__rating");
     //assign the img source according the rating of product
-    if(product.rating === 3.5) {
-        ratingStars.src = '/img/ratings/rating-35.png'
+    if (product.rating === 3.5) {
+      ratingStars.src = "/img/ratings/rating-35.png";
     } else if (product.rating === 4.0) {
-        ratingStars.src = '/img/ratings/rating-40.png'
+      ratingStars.src = "/img/ratings/rating-40.png";
     } else if (product.rating === 4.5) {
-        ratingStars.src = '/img/ratings/rating-45.png'
+      ratingStars.src = "/img/ratings/rating-45.png";
     } else {
-        ratingStars.src = '/img/ratings/rating-50.png'
+      ratingStars.src = "/img/ratings/rating-50.png";
     }
     //assign alt attribute
-    ratingStars.alt = 'Rating ' + product.rating;
+    ratingStars.alt = "Rating " + product.rating;
     //append the ratingStars to its parent
     itemContainerEl.appendChild(ratingStars);
 
     //create p element for ratingCount
-    const ratingCount = document.createElement('p');
+    const ratingCount = document.createElement("p");
     //assign the class to ratingCount
-    ratingCount.classList.add('product__ratingCount');
+    ratingCount.classList.add("product__ratingCount");
     //assign the innerHTML
-    ratingCount.innerHTML = product.ratingCount
+    ratingCount.innerHTML = product.ratingCount;
     //append the ratingCount to its parent
     itemContainerEl.appendChild(ratingCount);
 
     //create p element for price
-    const price = document.createElement('p');
-    //assign the class 
-    price.classList.add('product__price');
-    //assign the innerHTML 
-    price.innerHTML = '$' + product.price;
+    const price = document.createElement("p");
+    //assign the class
+    price.classList.add("product__price");
+    //assign the innerHTML
+    price.innerHTML = "$" + product.price;
     //append to parent
     itemContainerEl.appendChild(price);
 
     //render select element with function renderQuantityDropdown
-    renderQuantityDropdown(10);
+    renderQuantityDropdown(itemContainerEl, 10);
 
     //create button
-    const btnAddCart = document.createElement('button');
+    const btnAddCart = document.createElement("button");
     //assign the class
-    btnAddCart.classList.add('btnAddCart');
+    btnAddCart.classList.add("btnAddCart");
     //assign the innerHTML
-    btnAddCart.innerHTML = 'Add to Cart';
+    btnAddCart.innerHTML = "Add to Cart";
     //assign the id to button according the id of product
     btnAddCart.id = product.id;
     //append the buttton to its parent
     itemContainerEl.appendChild(btnAddCart);
-    
-}
+
+    //append the full product container to the list
+    itemsListEl.appendChild(itemContainerEl);
+  }
 }

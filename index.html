@@ -8,11 +8,12 @@
   </head>
   <body>
     <nav class="navbar">
-      <img
-        src="/img/amazon-logo-white.png"
-        alt="Amazon icon"
-        class="amazon__logo"
-      />
+      <a href="#" class="amazon__logo-link"
+        ><img
+          src="/img/amazon-logo-white.png"
+          alt="Amazon icon"
+          class="amazon__logo"
+      /></a>
       <div class="searchbar">
         <input type="text" class="search__input" placeholder="Search" />
         <button type="submit" class="search__btn">
@@ -24,19 +25,18 @@
         </button>
       </div>
       <div class="returns-orders">
-        <div class="returns-orders__text">
-          <p class="returns">Returns</p>
-          <p class="orders">& Orders</p>
-        </div>
-
-        <div class="cart">
-          <img
+        <a href="#" class="returns-orders__text">
+          <span class="returns">Returns</span>
+          <span class="orders">& Orders</span>
+        </a>
+        <a href="#" class="cart"
+          ><img
             src="/img/icons/cart-icon.png"
             alt="Shopping cart"
             class="shopping-cart-icon"
           />
-          <p class="cartText">Cart</p>
-        </div>
+          <p class="cartText">Cart</p></a
+        >
       </div>
     </nav>
     <div class="items__list"></div>

@@ -388,11 +388,17 @@ function renderShopItems() {
     img.alt = product.name;
     // assign class to img
     img.classList.add("product__photo");
-    //append image to itemContainer
-    itemContainerEl.appendChild(img);
+    // create div element container for product__photo
+    const divPhotoContainer = document.createElement('div');
+    // assign the class
+    divPhotoContainer.classList.add('product__photo-container');
+    //append image to divPhotoContainer
+    divPhotoContainer.appendChild(img);
+    // append divPhotoContainer to itemContainerEl
+    itemContainerEl.appendChild(divPhotoContainer);
 
     //create p element for title
-    const title = document.createElement("p");
+    const title = document.createElement("span");
     //assign the class to title
     title.classList.add("product__name");
     //assign the inner HTML value to it
@@ -420,7 +426,7 @@ function renderShopItems() {
     itemContainerEl.appendChild(ratingStars);
 
     //create p element for ratingCount
-    const ratingCount = document.createElement("p");
+    const ratingCount = document.createElement('span');
     //assign the class to ratingCount
     ratingCount.classList.add("product__ratingCount");
     //assign the innerHTML
@@ -429,7 +435,7 @@ function renderShopItems() {
     itemContainerEl.appendChild(ratingCount);
 
     //create p element for price
-    const price = document.createElement("p");
+    const price = document.createElement('span');
     //assign the class
     price.classList.add("product__price");
     //assign the innerHTML

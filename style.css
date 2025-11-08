@@ -145,6 +145,17 @@ body {
   align-self: center;
 }
 
+.cart__quantity {
+    color: rgb(240, 136, 4);
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 13px;
+    right: 52px;
+    width: 26px;
+    text-align: center;
+}
+
 .cartText {
   margin-left: 5px;
   font-weight: 700;

@@ -352,7 +352,7 @@ function renderQuantityDropdown(parentEl, quantityMax) {
   select.classList.add("item__quantity");
   //assign a name attribute
   select.name = "quantities";
-  
+
   //create for cycle
   for (let i = 1; i <= quantityMax; i++) {
     //create option element
@@ -389,9 +389,9 @@ function renderShopItems() {
     // assign class to img
     img.classList.add("product__photo");
     // create div element container for product__photo
-    const divPhotoContainer = document.createElement('div');
+    const divPhotoContainer = document.createElement("div");
     // assign the class
-    divPhotoContainer.classList.add('product__photo-container');
+    divPhotoContainer.classList.add("product__photo-container");
     //append image to divPhotoContainer
     divPhotoContainer.appendChild(img);
     // append divPhotoContainer to itemContainerEl
@@ -426,7 +426,7 @@ function renderShopItems() {
     itemContainerEl.appendChild(ratingStars);
 
     //create p element for ratingCount
-    const ratingCount = document.createElement('span');
+    const ratingCount = document.createElement("span");
     //assign the class to ratingCount
     ratingCount.classList.add("product__ratingCount");
     //assign the innerHTML
@@ -435,7 +435,7 @@ function renderShopItems() {
     itemContainerEl.appendChild(ratingCount);
 
     //create p element for price
-    const price = document.createElement('span');
+    const price = document.createElement("span");
     //assign the class
     price.classList.add("product__price");
     //assign the innerHTML
@@ -450,12 +450,38 @@ function renderShopItems() {
     const btnAddCart = document.createElement("button");
     //assign the class
     btnAddCart.classList.add("btnAddCart");
+    // assign id fot the button
     //assign the innerHTML
     btnAddCart.innerHTML = "Add to Cart";
-    //assign the id to button according the id of product
-    btnAddCart.id = product.id;
+    //assign the data id to button according the id of product
+    btnAddCart.setAttribute("data-product-id", product.id);
     //append the buttton to its parent
     itemContainerEl.appendChild(btnAddCart);
+
+    btnAddCart.addEventListener("click", () => {
+      const productId = btnAddCart.getAttribute("data-product-id");
+
+      let matchingItem;
+
+      cart.forEach((item) => {
+        if (productId === item.productId) {
+          //  if the product is alerady in the cart
+          matchingItem = item;
+        }
+      });
+
+      // if it is in the cart, increase quantity by one
+      if (matchingItem) {
+        matchingItem.quantity += 1;
+      } else {
+        // if the product is not in the cart yet
+        cart.push({
+          productId: productId,
+          quantity: 1,
+        });
+      }
+      console.log("This is cart: ", cart);
+    });
 
     //append the full product container to the list
     itemsListEl.appendChild(itemContainerEl);

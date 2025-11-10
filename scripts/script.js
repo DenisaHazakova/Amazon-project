@@ -458,32 +458,36 @@ function renderShopItems() {
     //append the buttton to its parent
     itemContainerEl.appendChild(btnAddCart);
 
-    btnAddCart.addEventListener("click", () => {
-      const productId = btnAddCart.getAttribute("data-product-id");
-
-      let matchingItem;
-
-      cart.forEach((item) => {
-        if (productId === item.productId) {
-          //  if the product is alerady in the cart
-          matchingItem = item;
-        }
-      });
-
-      // if it is in the cart, increase quantity by one
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        // if the product is not in the cart yet
-        cart.push({
-          productId: productId,
-          quantity: 1,
-        });
-      }
-      console.log("This is cart: ", cart);
-    });
+    btnAddCart.addEventListener("click", () => onAddProductToCart(product.id));
 
     //append the full product container to the list
     itemsListEl.appendChild(itemContainerEl);
+  }
+
+  function onAddProductToCart(productId) {
+
+      const productInCart = cart.find((item) => (item.productId === productId));
+      // if it is in the cart, increase quantity by one
+      if (productInCart) {
+        productInCart.quantity += 1;
+      } else {
+        // if the product is not in the cart yet
+        cart.push({
+          productId,
+          quantity: 1,
+        });
+      }
+
+      //  calculate the total quantity
+      let cartQuantity = 0;
+      cart.forEach((item)=> {
+        cartQuantity += item.quantity;
+      })
+
+      // get element for the cart number of items
+      document.querySelector('.cart__quantity').innerHTML = cartQuantity
+
+      // console.log('cart quantity: ', cartQuantity);
+      // console.log("This is cart: ", cart);
   }
 }

@@ -449,6 +449,16 @@ function renderShopItems() {
     //render select element with function renderQuantityDropdown
     renderQuantityDropdown(itemContainerEl, 10);
 
+    //create div for added text message
+    const addedContainerEl = document.createElement("div");
+    //assign a class to it
+    addedContainerEl.classList.add("added-to-cart-message");
+    //append the image with the text to div container
+    addedContainerEl.innerHTML = `
+  <img src="/img/icons/checkmark.png"> Added
+`;
+itemContainerEl.appendChild(addedContainerEl);
+
     //create button
     const btnAddCart = document.createElement("button");
     //assign the class
@@ -478,7 +488,7 @@ function renderShopItems() {
     const selectEl = productEl.querySelector("select");
     // find the value of select, make it a number
     const productQuantity = +selectEl.value;
-    console.log('quantity from select', productQuantity);
+    console.log("quantity from select", productQuantity);
 
     // check if the product id is the same as the id of product in cart
     const productInCart = cart.find((item) => item.productId === productId);

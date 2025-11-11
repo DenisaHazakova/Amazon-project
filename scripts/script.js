@@ -378,6 +378,8 @@ function renderShopItems() {
   for (const product of productList) {
     // create div element
     const itemContainerEl = document.createElement("div");
+    itemContainerEl.setAttribute("data-product-id", product.id);
+
     //assign the class
     itemContainerEl.classList.add("item__container");
     //create img element
@@ -390,6 +392,7 @@ function renderShopItems() {
     img.classList.add("product__photo");
     // create div element container for product__photo
     const divPhotoContainer = document.createElement("div");
+
     // assign the class
     divPhotoContainer.classList.add("product__photo-container");
     //append image to divPhotoContainer
@@ -458,36 +461,45 @@ function renderShopItems() {
     //append the buttton to its parent
     itemContainerEl.appendChild(btnAddCart);
 
-    btnAddCart.addEventListener("click", () => onAddProductToCart(product.id));
-
+    // assign function after clik on the button
+    btnAddCart.addEventListener("click", (event) =>
+      onAddProductToCart(product.id)
+    );
     //append the full product container to the list
     itemsListEl.appendChild(itemContainerEl);
   }
 
   function onAddProductToCart(productId) {
+    //find parent element
+    const productEl = document.querySelector(
+      `[data-product-id="${productId}"]`
+    );
+    // find the select element
+    const selectEl = productEl.querySelector("select");
+    // find the value of select, make it a number
+    const productQuantity = +selectEl.value;
+    console.log('quantity from select', productQuantity);
 
-      const productInCart = cart.find((item) => (item.productId === productId));
-      // if it is in the cart, increase quantity by one
-      if (productInCart) {
-        productInCart.quantity += 1;
-      } else {
-        // if the product is not in the cart yet
-        cart.push({
-          productId,
-          quantity: 1,
-        });
-      }
+    // check if the product id is the same as the id of product in cart
+    const productInCart = cart.find((item) => item.productId === productId);
 
-      //  calculate the total quantity
-      let cartQuantity = 0;
-      cart.forEach((item)=> {
-        cartQuantity += item.quantity;
-      })
+    // check if product already exist in cart
+    if (productInCart) {
+      productInCart.quantity += productQuantity;
+      // if not, add it to cart
+    } else {
+      cart.push({
+        productId,
+        quantity: productQuantity,
+      });
+    }
 
-      // get element for the cart number of items
-      document.querySelector('.cart__quantity').innerHTML = cartQuantity
-
-      // console.log('cart quantity: ', cartQuantity);
-      // console.log("This is cart: ", cart);
+    // calculate total quantity
+    const cartQuantity = cart.reduce(
+      (accumulator, cartProduct) => accumulator + cartProduct.quantity,
+      0
+    );
+    //  add quantity into inner html
+    document.querySelector(".cart__quantity").innerHTML = cartQuantity;
   }
 }

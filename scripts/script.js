@@ -451,13 +451,15 @@ function renderShopItems() {
 
     //create div for added text message
     const addedContainerEl = document.createElement("div");
-    //assign a class to it
+    //assign a class to it, this class will be invisible
     addedContainerEl.classList.add("added-to-cart-message");
+    // addedContainerEl.classList.add('added-to-cart-message-visible');
     //append the image with the text to div container
     addedContainerEl.innerHTML = `
   <img src="/img/icons/checkmark.png"> Added
 `;
-itemContainerEl.appendChild(addedContainerEl);
+    addedContainerEl.setAttribute("data-msg-id", product.id);
+    itemContainerEl.appendChild(addedContainerEl);
 
     //create button
     const btnAddCart = document.createElement("button");
@@ -467,14 +469,15 @@ itemContainerEl.appendChild(addedContainerEl);
     //assign the innerHTML
     btnAddCart.innerHTML = "Add to Cart";
     //assign the data id to button according the id of product
-    btnAddCart.setAttribute("data-product-id", product.id);
+    btnAddCart.setAttribute("data-id", product.id);
     //append the buttton to its parent
     itemContainerEl.appendChild(btnAddCart);
 
     // assign function after clik on the button
-    btnAddCart.addEventListener("click", (event) =>
-      onAddProductToCart(product.id)
-    );
+    btnAddCart.addEventListener("click", (event) => {
+      onAddProductToCart(product.id);
+      onDisplayMessage(product.id);
+    });
     //append the full product container to the list
     itemsListEl.appendChild(itemContainerEl);
   }
@@ -488,8 +491,6 @@ itemContainerEl.appendChild(addedContainerEl);
     const selectEl = productEl.querySelector("select");
     // find the value of select, make it a number
     const productQuantity = +selectEl.value;
-    console.log("quantity from select", productQuantity);
-
     // check if the product id is the same as the id of product in cart
     const productInCart = cart.find((item) => item.productId === productId);
 
@@ -511,5 +512,34 @@ itemContainerEl.appendChild(addedContainerEl);
     );
     //  add quantity into inner html
     document.querySelector(".cart__quantity").innerHTML = cartQuantity;
+  }
+
+  function onDisplayMessage(productId) {
+    const btnEl = document.querySelector(`[data-id="${productId}"]`);
+    const addedMsgEl = document.querySelector(`[data-msg-id="${productId}"]`);
+
+    // need to find the btnEl based on data id which is specific for each container
+    // change the type from string to number
+    const btnElId = +btnEl.getAttribute("data-id");
+    // need to find div element for added message based on id
+    const addedMsgElId = +addedMsgEl.getAttribute("data-msg-id");
+    console.log("btnElId", btnElId, "addedMsgElId", addedMsgElId);
+
+    // id of button element and div needs to be the same
+    if (btnElId === addedMsgElId) {
+      // if the ids are the same, we assign class -visible which has opacity 1
+      // show the message
+      addedMsgEl.classList.add("added-to-cart-message-visible");
+      console.log("toto je addedMsgEl", addedMsgEl);
+
+      // Clear any previous timer (in case user clicks multiple times quickly)
+      clearTimeout(addedMsgEl._hideTimeOut);
+
+      // Hide it again after 2 seconds
+      addedMsgEl._hideTimeOut = setTimeout(() => {
+        // after msg appears we want to deactivate the -visible class so the opacity will be zero again
+        addedMsgEl.classList.remove("added-to-cart-message-visible");
+      }, 2000);
+    }
   }
 }

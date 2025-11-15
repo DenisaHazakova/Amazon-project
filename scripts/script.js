@@ -1,3 +1,7 @@
+// with import we can choose in curly brackets which variable we need to use in this file
+// after from we need to specify the file path where the variable is located
+import {cart} from '../data/cart.js';
+
 const productList = [
   {
     id: 1,

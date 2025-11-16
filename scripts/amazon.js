@@ -2,7 +2,7 @@
 // after from we need to specify the file path where the variable is located
 import {cart} from '../data/cart.js';
 
-const productList = [
+export const productList = [
   {
     id: 1,
     imgSrc: "/img/products/athletic-cotton-socks-6-pairs.jpg",

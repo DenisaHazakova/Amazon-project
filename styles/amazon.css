@@ -261,39 +261,3 @@ body {
   border-radius: 50px;
   background-color: rgb(255, 216, 20);
 }
-
-/* ////////// checkout.html //////// */
-body {
-  margin: 0;
-  position: absolute;
-}
-
-.header__section {
-  height: 60px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 6rem;
-}
-
-.header__amazon-logo {
-  width: 100px;
-  height: auto;
-}
-
-.checkout__msg {
-  font-size: 25px;
-  font-weight: 500;
-}
-
-.checkout__msg-items {
-  font-size: 23px;
-  color: rgb(0, 113, 133);
-  text-decoration: none;
-  cursor: pointer;
-}

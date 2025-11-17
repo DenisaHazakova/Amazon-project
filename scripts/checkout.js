@@ -45,7 +45,7 @@ function renderItemsInCartSummary() {
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
-        cartItemPrice.innerHTML = '$ ' + product.price;
+        cartItemPrice.innerHTML = '$ ' + product.price.toFixed(2);
         cartItemContainer.appendChild(cartItemPrice);
 
         // create quantity

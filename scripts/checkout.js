@@ -56,12 +56,24 @@ function renderItemsInCartSummary() {
         cartItemQuantity.innerHTML = 'Quantity: ' + cartItem.quantity;
         cartItemDetails.appendChild(cartItemQuantity);
 
-        // create spans element for buttons update and delete
+        // create spans element for buttons update, save and delete
         const updateSpan = document.createElement('span');
         updateSpan.innerHTML = 'Update';
         updateSpan.classList.add('update-quantity');
         updateSpan.setAttribute('data-testid', productId);
         cartItemDetails.appendChild(updateSpan);
+
+        const saveSpan = document.createElement('span');
+        saveSpan.innerHTML = 'Save';
+        saveSpan.classList.add('save-quantity');
+        saveSpan.setAttribute('data-testid', productId);
+        cartItemDetails.appendChild(saveSpan);
+
+        const deleteSpan = document.createElement('span');
+        deleteSpan.innerHTML = 'Delete';
+        deleteSpan.classList.add('delete-quantity');
+        deleteSpan.setAttribute('data-testid', productId);
+        cartItemDetails.appendChild(deleteSpan);
 
 
         //append cartItemDetails to its parent

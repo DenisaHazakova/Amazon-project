@@ -38,21 +38,34 @@ function renderItemsInCartSummary() {
         cartItemPhoto.classList.add("cartItemPhoto");
         cartItemContainer.appendChild(cartItemPhoto);
 
+        //create div container for product info details
+        const cartItemDetails = document.createElement('div');
+
         // create cartItem title
         const cartItemTitle = document.createElement("span");
         cartItemTitle.innerHTML = product.name;
-        cartItemContainer.appendChild(cartItemTitle);
+        cartItemDetails.appendChild(cartItemTitle);
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
         cartItemPrice.innerHTML = '$ ' + product.price.toFixed(2);
-        cartItemContainer.appendChild(cartItemPrice);
+        cartItemDetails.appendChild(cartItemPrice);
 
         // create quantity
         const cartItemQuantity = document.createElement("span");
         cartItemQuantity.innerHTML = 'Quantity: ' + cartItem.quantity;
-        cartItemContainer.appendChild(cartItemQuantity);
+        cartItemDetails.appendChild(cartItemQuantity);
 
+        // create spans element for buttons update and delete
+        const updateSpan = document.createElement('span');
+        updateSpan.innerHTML = 'Update';
+        updateSpan.classList.add('update-quantity');
+        updateSpan.setAttribute('data-testid', productId);
+        cartItemDetails.appendChild(updateSpan);
+
+
+        //append cartItemDetails to its parent
+        cartItemContainer.appendChild(cartItemDetails);
         // append cartItemContainer to its parent
         itemsSumaryDiv.appendChild(cartItemContainer);
       }

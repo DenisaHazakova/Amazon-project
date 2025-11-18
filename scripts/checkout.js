@@ -1,5 +1,6 @@
 import { cart } from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
+import {formatCurrency} from "./utils/money.js"
 
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -49,7 +50,7 @@ function renderItemsInCartSummary() {
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
-        cartItemPrice.innerHTML = '$ ' + product.price.toFixed(2);
+        cartItemPrice.innerHTML = '$ ' + formatCurrency(product.price);
         cartItemDetails.appendChild(cartItemPrice);
 
 
@@ -82,6 +83,29 @@ function renderItemsInCartSummary() {
         deleteSpan.classList.add('delete-quantity');
         deleteSpan.setAttribute('data-testid', productId);
         quantityContainer.appendChild(deleteSpan);
+
+        // container for delivery options
+        const dlvrOptsContainer = document.createElement('div');
+        dlvrOptsContainer.classList.add('dlvrOptsContainer');
+
+        // delivery options paragraph text
+        const deliveryTextSpan = document.createElement('span');
+        deliveryTextSpan.innerHTML = 'Choose a delivery option:';
+        deliveryTextSpan.classList.add('deliveryTextSpan');
+        dlvrOptsContainer.appendChild(deliveryTextSpan);
+
+        //Tuesday delivery option
+        const deliveryOptionDate = document.createElement('span');
+        deliveryOptionDate.innerHTML = 'Tuesday, November 25';
+        deliveryOptionDate.classList.add('deliveryOptionDate');
+        dlvrOptsContainer.appendChild(deliveryOptionDate);
+
+        // cost of shipping in case of Tuesday is selected
+        const freeShippingCost = document.createElement('span');
+        freeShippingCost.innerHTML = 'free shipping';
+        freeShippingCost.classList.add('freeShippingCost');
+        dlvrOptsContainer.appendChild(freeShippingCost);
+
 
         //append quantity Container to its parent
         cartItemDetails.appendChild(quantityContainer);

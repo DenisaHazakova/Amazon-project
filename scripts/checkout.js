@@ -40,6 +40,7 @@ function renderItemsInCartSummary() {
 
         //create div container for product info details
         const cartItemDetails = document.createElement('div');
+        cartItemDetails.classList.add('cartItemDetails');
 
         // create cartItem title
         const cartItemTitle = document.createElement("span");
@@ -51,31 +52,39 @@ function renderItemsInCartSummary() {
         cartItemPrice.innerHTML = '$ ' + product.price.toFixed(2);
         cartItemDetails.appendChild(cartItemPrice);
 
+
+        // create div for quantity row
+        const quantityContainer = document.createElement('div');
+        quantityContainer.classList.add('quantityContainer');
+
         // create quantity
         const cartItemQuantity = document.createElement("span");
+        cartItemQuantity.classList.add('cartItemQuantity');
         cartItemQuantity.innerHTML = 'Quantity: ' + cartItem.quantity;
         cartItemDetails.appendChild(cartItemQuantity);
-
+        quantityContainer.appendChild(cartItemQuantity);
+        
         // create spans element for buttons update, save and delete
         const updateSpan = document.createElement('span');
         updateSpan.innerHTML = 'Update';
         updateSpan.classList.add('update-quantity');
         updateSpan.setAttribute('data-testid', productId);
-        cartItemDetails.appendChild(updateSpan);
+        quantityContainer.appendChild(updateSpan);
 
         const saveSpan = document.createElement('span');
         saveSpan.innerHTML = 'Save';
         saveSpan.classList.add('save-quantity');
         saveSpan.setAttribute('data-testid', productId);
-        cartItemDetails.appendChild(saveSpan);
-
+        quantityContainer.appendChild(saveSpan);
+        
         const deleteSpan = document.createElement('span');
         deleteSpan.innerHTML = 'Delete';
         deleteSpan.classList.add('delete-quantity');
         deleteSpan.setAttribute('data-testid', productId);
-        cartItemDetails.appendChild(deleteSpan);
+        quantityContainer.appendChild(deleteSpan);
 
-
+        //append quantity Container to its parent
+        cartItemDetails.appendChild(quantityContainer);
         //append cartItemDetails to its parent
         cartItemContainer.appendChild(cartItemDetails);
         // append cartItemContainer to its parent

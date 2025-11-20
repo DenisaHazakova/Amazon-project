@@ -1,6 +1,54 @@
 import { cart } from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
-import {formatCurrency} from "./utils/money.js"
+import { formatCurrency } from "./utils/money.js";
+
+const getTodayDate = () => {
+  // with new Date we get today's date
+  const d = new Date();
+  //   with getDate() method we get current day of th month
+  const day = d.getDate();
+  //   eith getFullYear() method we get 4 digits format of year
+  const year = d.getFullYear();
+  // we use object of months to get wanted format of the month,
+  // javascript start counting index from 0
+  // example: january = 0, december = 11
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  // with this line we get: the index of current monht of d which is today' s date
+  // example: months[11] = december
+  let month = months[d.getMonth()];
+  //   we use object weekDays to get the day of the week in wanted format
+  // ! days are counted from Sunday (with index zero)
+  const weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const weekDay = weekDays[d.getDay()];
+  console.log(year, day, month, weekDay);
+
+  return {
+    weekDay,
+    month,
+    year,
+  };
+};
 
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -14,21 +62,19 @@ function renderItemsInCartSummary() {
   // render through the cart object
   for (const cartItem of cart) {
     const productId = +cartItem.productId;
-    // let matchingProduct = "";
-    // console.log("productId", productId);
 
     // loop through productList object so we can get all necessary information
     for (const product of productList) {
       if (product.id === productId) {
         // matchingProduct = product;
-        console.log('product', product);
+        // console.log("product", product);
         // create div for each cartItem
         const cartItemContainer = document.createElement("div");
         cartItemContainer.classList.add("cartItemContainer");
 
         // create span for Delivery date
         const deliveryDate = document.createElement("span");
-        deliveryDate.classList.add('deliveryDate');
+        deliveryDate.classList.add("deliveryDate");
         deliveryDate.innerHTML = "Delivery date: Tuesday, June 21";
         // append deliveryDate to aprent
         cartItemContainer.appendChild(deliveryDate);
@@ -40,8 +86,8 @@ function renderItemsInCartSummary() {
         cartItemContainer.appendChild(cartItemPhoto);
 
         //create div container for product info details
-        const cartItemDetails = document.createElement('div');
-        cartItemDetails.classList.add('cartItemDetails');
+        const cartItemDetails = document.createElement("div");
+        cartItemDetails.classList.add("cartItemDetails");
 
         // create cartItem title
         const cartItemTitle = document.createElement("span");
@@ -50,63 +96,66 @@ function renderItemsInCartSummary() {
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
-        cartItemPrice.innerHTML = '$ ' + formatCurrency(product.price);
+        cartItemPrice.innerHTML = "$ " + formatCurrency(product.price);
         cartItemDetails.appendChild(cartItemPrice);
 
-
         // create div for quantity row
-        const quantityContainer = document.createElement('div');
-        quantityContainer.classList.add('quantityContainer');
+        const quantityContainer = document.createElement("div");
+        quantityContainer.classList.add("quantityContainer");
 
         // create quantity
         const cartItemQuantity = document.createElement("span");
-        cartItemQuantity.classList.add('cartItemQuantity');
-        cartItemQuantity.innerHTML = 'Quantity: ' + cartItem.quantity;
+        cartItemQuantity.classList.add("cartItemQuantity");
+        cartItemQuantity.innerHTML = "Quantity: " + cartItem.quantity;
         cartItemDetails.appendChild(cartItemQuantity);
         quantityContainer.appendChild(cartItemQuantity);
-        
+
         // create spans element for buttons update, save and delete
-        const updateSpan = document.createElement('span');
-        updateSpan.innerHTML = 'Update';
-        updateSpan.classList.add('update-quantity');
-        updateSpan.setAttribute('data-testid', productId);
+        const updateSpan = document.createElement("span");
+        updateSpan.innerHTML = "Update";
+        updateSpan.classList.add("update-quantity");
+        updateSpan.setAttribute("data-testid", productId);
         quantityContainer.appendChild(updateSpan);
 
-        const saveSpan = document.createElement('span');
-        saveSpan.innerHTML = 'Save';
-        saveSpan.classList.add('save-quantity');
-        saveSpan.setAttribute('data-testid', productId);
+        const saveSpan = document.createElement("span");
+        saveSpan.innerHTML = "Save";
+        saveSpan.classList.add("save-quantity");
+        saveSpan.setAttribute("data-testid", productId);
         quantityContainer.appendChild(saveSpan);
-        
-        const deleteSpan = document.createElement('span');
-        deleteSpan.innerHTML = 'Delete';
-        deleteSpan.classList.add('delete-quantity');
-        deleteSpan.setAttribute('data-testid', productId);
+
+        const deleteSpan = document.createElement("span");
+        deleteSpan.innerHTML = "Delete";
+        deleteSpan.classList.add("delete-quantity");
+        deleteSpan.setAttribute("data-testid", productId);
         quantityContainer.appendChild(deleteSpan);
 
         // container for delivery options
-        const dlvrOptsContainer = document.createElement('div');
-        dlvrOptsContainer.classList.add('dlvrOptsContainer');
+        const dlvrOptsContainer = document.createElement("div");
+        dlvrOptsContainer.classList.add("dlvrOptsContainer");
 
         // delivery options paragraph text
-        const deliveryTextSpan = document.createElement('span');
-        deliveryTextSpan.innerHTML = 'Choose a delivery option:';
-        deliveryTextSpan.classList.add('deliveryTextSpan');
+        const deliveryTextSpan = document.createElement("span");
+        deliveryTextSpan.innerHTML = "Choose a delivery option:";
+        deliveryTextSpan.classList.add("deliveryTextSpan");
         dlvrOptsContainer.appendChild(deliveryTextSpan);
 
-        //Tuesday delivery option
-        const deliveryOptionDate = document.createElement('span');
-        deliveryOptionDate.innerHTML = 'Tuesday, November 25';
-        deliveryOptionDate.classList.add('deliveryOptionDate');
-        dlvrOptsContainer.appendChild(deliveryOptionDate);
+        // create 3 radio buttons
+        for (let i = 0; i <= 2; i++) {
+          const deliveryOptionElements = getDeliveryOptionElements(
+            i,
+            product.id
+          );
+          dlvrOptsContainer.appendChild(
+            deliveryOptionElements.deliveryOptionDate
+          );
+          dlvrOptsContainer.appendChild(
+            deliveryOptionElements.freeShippingCost
+          );
+          dlvrOptsContainer.appendChild(deliveryOptionElements.radioBtn);
+        }
 
-        // cost of shipping in case of Tuesday is selected
-        const freeShippingCost = document.createElement('span');
-        freeShippingCost.innerHTML = 'free shipping';
-        freeShippingCost.classList.add('freeShippingCost');
-        dlvrOptsContainer.appendChild(freeShippingCost);
-
-
+        //append dlvrOptsContainer into its parent
+        cartItemDetails.appendChild(dlvrOptsContainer);
         //append quantity Container to its parent
         cartItemDetails.appendChild(quantityContainer);
         //append cartItemDetails to its parent
@@ -116,4 +165,28 @@ function renderItemsInCartSummary() {
       }
     }
   }
+}
+
+function getDeliveryOptionElements(productId) {
+  const date = getTodayDate();
+  // Tuesday delivery option
+  const deliveryOptionDate = document.createElement("span");
+  deliveryOptionDate.innerHTML =
+    date.weekDay + ", " + date.month + " " + date.year;
+  deliveryOptionDate.classList.add("deliveryOptionDate");
+
+  // cost of shipping in case of Tuesday is selected
+  const freeShippingCost = document.createElement("span");
+  freeShippingCost.innerHTML = "free shipping";
+  freeShippingCost.classList.add("freeShippingCost");
+
+  const radioBtn = document.createElement("input");
+  radioBtn.type = "radio";
+  radioBtn.name = `delivery-option-${productId}`;
+
+  return {
+    radioBtn,
+    deliveryOptionDate,
+    freeShippingCost,
+  };
 }

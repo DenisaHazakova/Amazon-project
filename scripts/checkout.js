@@ -41,7 +41,7 @@ const getTodayDate = () => {
     "Saturday",
   ];
   const weekDay = weekDays[d.getDay()];
-  console.log(year, day, month, weekDay);
+//   console.log(year, day, month, weekDay);
 
   return {
     weekDay,
@@ -89,15 +89,21 @@ function renderItemsInCartSummary() {
         const cartItemDetails = document.createElement("div");
         cartItemDetails.classList.add("cartItemDetails");
 
+        // create div container for product details
+        const productDetail = document.createElement('div');
+        productDetail.classList.add('productDetail');
+
         // create cartItem title
         const cartItemTitle = document.createElement("span");
         cartItemTitle.innerHTML = product.name;
-        cartItemDetails.appendChild(cartItemTitle);
+        cartItemTitle.classList.add('cartItemTitle');
+        productDetail.appendChild(cartItemTitle);
+        
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
         cartItemPrice.innerHTML = "$ " + formatCurrency(product.price);
-        cartItemDetails.appendChild(cartItemPrice);
+        productDetail.appendChild(cartItemPrice);
 
         // create div for quantity row
         const quantityContainer = document.createElement("div");
@@ -107,7 +113,6 @@ function renderItemsInCartSummary() {
         const cartItemQuantity = document.createElement("span");
         cartItemQuantity.classList.add("cartItemQuantity");
         cartItemQuantity.innerHTML = "Quantity: " + cartItem.quantity;
-        cartItemDetails.appendChild(cartItemQuantity);
         quantityContainer.appendChild(cartItemQuantity);
 
         // create spans element for buttons update, save and delete
@@ -128,6 +133,10 @@ function renderItemsInCartSummary() {
         deleteSpan.classList.add("delete-quantity");
         deleteSpan.setAttribute("data-testid", productId);
         quantityContainer.appendChild(deleteSpan);
+
+        productDetail.appendChild(quantityContainer);
+        // append productDetail to its parent cartItemDetails
+        cartItemDetails.appendChild(productDetail);
 
         // container for delivery options
         const dlvrOptsContainer = document.createElement("div");
@@ -156,8 +165,6 @@ function renderItemsInCartSummary() {
 
         //append dlvrOptsContainer into its parent
         cartItemDetails.appendChild(dlvrOptsContainer);
-        //append quantity Container to its parent
-        cartItemDetails.appendChild(quantityContainer);
         //append cartItemDetails to its parent
         cartItemContainer.appendChild(cartItemDetails);
         // append cartItemContainer to its parent

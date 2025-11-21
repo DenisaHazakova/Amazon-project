@@ -1,3 +1,8 @@
+
+:root {
+  font-size: 16px; /* default browser font size */
+}
+
 body {
   margin: 0;
   /* position: absolute; */
@@ -17,8 +22,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 20rem 6rem 20rem;
+  padding: 0.5em 20em 6rem 20em;
 }
+
+/* @media only screen and (max-width: 81.25rem) {
+  .header__section {
+    padding: 0.5rem 1.875rem;
+  }
+}
+ */
+
+@media only screen and (max-width: 75em) {
+  .header__section {
+    padding: 0.5em 3.4em;
+  }
+} 
 
 .amazon__logo {
   width: 100px;
@@ -42,7 +60,7 @@ body {
 
 .cartItemContainer {
   display: grid;
-  grid-template-columns: 1fr max-content 1fr;
+  grid-template-columns: min-content 1fr min-content;
   grid-template-rows: min-content 1fr;
   row-gap: 22px;
   width: 100%;
@@ -58,6 +76,7 @@ body {
   color: rgb(0, 118, 0);
   font-weight: 700;
   font-size: 19px;
+  margin: 1rem;
 }
 
 /* image of product */
@@ -66,6 +85,7 @@ body {
   grid-row: 2/3;
   width: 100px;
   height: auto;
+  margin: 0rem 0.8rem;
 }
 
 /* title, price, quantity, buttons for update quantity */
@@ -76,22 +96,38 @@ body {
   row-gap: 8px;
 }
 
+.producDetail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.cartItemTitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .quantityContainer {
-justify-content: left;
-column-gap: 10px;
+  justify-content: left;
+  column-gap: 10px;
 }
 
 .cartItemQuantity {
-    grid-row: 3/4;
+  grid-row: 3/4;
 }
 
 /* include update, save, delete spans elements */
 .spansContainer {
-    grid-row: 3/4;
+  grid-row: 3/4;
 }
 
 .save-quantity {
   opacity: 0;
+}
+
+.dlvrOptsContainer {
+  grid-column: 3/4;
+  display: grid;
 }
 
 /* ///// ORDER SUMMARY SECTION ON THE RIGHT ///// */
@@ -100,7 +136,16 @@ column-gap: 10px;
   display: grid;
   grid-template-columns: 1fr min-content;
   justify-content: space-between;
-  padding: 0 20rem 0 20rem;
+  padding: 0 20em 0 20em;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .checkout__container {
+    padding: 0 1.8em;
+    margin: 8.75em 1.6em 0 1.6em;
+
+  }
 }
 
 .heading_4 {

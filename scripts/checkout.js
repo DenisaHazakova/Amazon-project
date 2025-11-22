@@ -2,6 +2,7 @@ import { cart } from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
 import { formatCurrency } from "./utils/money.js";
 
+//  function to get date in specified format
 const getTodayDate = () => {
   // with new Date we get today's date
   const d = new Date();
@@ -41,7 +42,7 @@ const getTodayDate = () => {
     "Saturday",
   ];
   const weekDay = weekDays[d.getDay()];
-//   console.log(year, day, month, weekDay);
+  //   console.log(year, day, month, weekDay);
 
   return {
     weekDay,
@@ -90,15 +91,14 @@ function renderItemsInCartSummary() {
         cartItemDetails.classList.add("cartItemDetails");
 
         // create div container for product details
-        const productDetail = document.createElement('div');
-        productDetail.classList.add('productDetail');
+        const productDetail = document.createElement("div");
+        productDetail.classList.add("productDetail");
 
         // create cartItem title
         const cartItemTitle = document.createElement("span");
         cartItemTitle.innerHTML = product.name;
-        cartItemTitle.classList.add('cartItemTitle');
+        cartItemTitle.classList.add("cartItemTitle");
         productDetail.appendChild(cartItemTitle);
-        
 
         //create cartItem price
         const cartItemPrice = document.createElement("span");
@@ -174,21 +174,24 @@ function renderItemsInCartSummary() {
   }
 }
 
-function getDeliveryOptionElements(productId) {
+// function to create delivery options
+function getDeliveryOptionElements(index, productId) {
   const date = getTodayDate();
-  // Tuesday delivery option
+  // delivery option text
   const deliveryOptionDate = document.createElement("span");
   deliveryOptionDate.innerHTML =
     date.weekDay + ", " + date.month + " " + date.year;
   deliveryOptionDate.classList.add("deliveryOptionDate");
 
-  // cost of shipping in case of Tuesday is selected
+  // cost of shipping in case of radio button is selected
   const freeShippingCost = document.createElement("span");
   freeShippingCost.innerHTML = "free shipping";
   freeShippingCost.classList.add("freeShippingCost");
 
+  // create radio butto for select the delivery option
   const radioBtn = document.createElement("input");
   radioBtn.type = "radio";
+  // each group of radio buttons in product container will have the name according its productId
   radioBtn.name = `delivery-option-${productId}`;
 
   return {

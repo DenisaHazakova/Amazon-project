@@ -95,13 +95,14 @@ function renderItemsInCartSummary() {
         productDetail.classList.add("productDetail");
 
         // create cartItem title
-        const cartItemTitle = document.createElement("span");
+        const cartItemTitle = document.createElement("div");
         cartItemTitle.innerHTML = product.name;
         cartItemTitle.classList.add("cartItemTitle");
         productDetail.appendChild(cartItemTitle);
 
         //create cartItem price
-        const cartItemPrice = document.createElement("span");
+        const cartItemPrice = document.createElement("div");
+        cartItemPrice.classList.add('cartItemPrice');
         cartItemPrice.innerHTML = "$ " + formatCurrency(product.price);
         productDetail.appendChild(cartItemPrice);
 
@@ -154,13 +155,13 @@ function renderItemsInCartSummary() {
             i,
             product.id
           );
+          dlvrOptsContainer.appendChild(deliveryOptionElements.radioBtn);
           dlvrOptsContainer.appendChild(
             deliveryOptionElements.deliveryOptionDate
           );
           dlvrOptsContainer.appendChild(
             deliveryOptionElements.freeShippingCost
           );
-          dlvrOptsContainer.appendChild(deliveryOptionElements.radioBtn);
         }
 
         //append dlvrOptsContainer into its parent

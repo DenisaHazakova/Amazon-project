@@ -1,5 +1,5 @@
 // use export keyword so the variable can be accessed from other files
-export const cart = [
+export let cart = [
   {
     productId: 1,
     quantity: 2,
@@ -9,3 +9,17 @@ export const cart = [
     quantity: 1,
   },
 ];
+
+
+// function for removing a product from cart
+export function removeFromCart(productId) {
+  const newCart = [];
+
+  for(const cartItem of cart) {
+    if(cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
+  }
+
+  cart = newCart;
+}

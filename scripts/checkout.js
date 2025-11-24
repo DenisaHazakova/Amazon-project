@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, removeFromCart } from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -132,9 +132,15 @@ function renderItemsInCartSummary() {
         const deleteSpan = document.createElement("span");
         deleteSpan.innerHTML = "Delete";
         deleteSpan.classList.add("delete-quantity");
-        deleteSpan.setAttribute("data-testid", productId);
+        deleteSpan.setAttribute("data-product-id", productId);
         quantityContainer.appendChild(deleteSpan);
 
+        // test purpose
+        deleteSpan.addEventListener('click', ()=> {
+            removeFromCart(productId);
+            console.log('productId: ', productId, 'data-product-id: ', +deleteSpan.getAttribute('data-product-id'));
+            console.log(cart);
+        })
         productDetail.appendChild(quantityContainer);
         // append productDetail to its parent cartItemDetails
         cartItemDetails.appendChild(productDetail);

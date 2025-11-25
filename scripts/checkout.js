@@ -6,7 +6,7 @@ import { formatCurrency } from "./utils/money.js";
 const getTodayDate = () => {
   // with new Date we get today's date
   const d = new Date();
-  //   with getDate() method we get current day of th month
+  //   with getDate() method we get current day of the month
   const day = d.getDate();
   //   eith getFullYear() method we get 4 digits format of year
   const year = d.getFullYear();
@@ -47,7 +47,7 @@ const getTodayDate = () => {
   return {
     weekDay,
     month,
-    year,
+    day,
   };
 };
 
@@ -138,7 +138,7 @@ function renderItemsInCartSummary() {
         // test purpose
         deleteSpan.addEventListener('click', ()=> {
             removeFromCart(productId);
-            console.log('productId: ', productId, 'data-product-id: ', +deleteSpan.getAttribute('data-product-id'));
+            // console.log('productId: ', productId, 'data-product-id: ', +deleteSpan.getAttribute('data-product-id'));
             console.log(cart);
         })
         productDetail.appendChild(quantityContainer);
@@ -187,7 +187,7 @@ function getDeliveryOptionElements(index, productId) {
   // delivery option text
   const deliveryOptionDate = document.createElement("span");
   deliveryOptionDate.innerHTML =
-    date.weekDay + ", " + date.month + " " + date.year;
+    date.weekDay + ", " + date.month + " " + (date.day+index);
   deliveryOptionDate.classList.add("deliveryOptionDate");
 
   // cost of shipping in case of radio button is selected

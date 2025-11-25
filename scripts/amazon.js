@@ -1,6 +1,6 @@
 // with import we can choose in curly brackets which variable we need to use in this file
 // after from we need to specify the file path where the variable is located
-import {cart} from '../data/cart.js';
+import {cart, saveToStorage} from '../data/cart.js';
 import {formatCurrency} from "./utils/money.js"
 
 export const productList = [
@@ -517,6 +517,7 @@ function renderShopItems() {
     );
     //  add quantity into inner html
     document.querySelector(".cart__quantity").innerHTML = cartQuantity;
+    saveToStorage();
   }
 
   function onDisplayMessage(productId) {

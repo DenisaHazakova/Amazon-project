@@ -67,11 +67,12 @@ function renderItemsInCartSummary() {
     // loop through productList object so we can get all necessary information
     for (const product of productList) {
       if (product.id === productId) {
-        // matchingProduct = product;
-        // console.log("product", product);
+
         // create div for each cartItem
         const cartItemContainer = document.createElement("div");
         cartItemContainer.classList.add("cartItemContainer");
+        //  container needs to hold specific id (productId) so we can modify the container later
+        // cartItemContainer.setAttribute('data-container-id', productId);
 
         // create span for Delivery date
         const deliveryDate = document.createElement("span");
@@ -135,12 +136,12 @@ function renderItemsInCartSummary() {
         deleteSpan.setAttribute("data-product-id", productId);
         quantityContainer.appendChild(deleteSpan);
 
-        // test purpose
+        // after click on delete span the container will be removed from the DOM
         deleteSpan.addEventListener('click', ()=> {
             removeFromCart(productId);
-            // console.log('productId: ', productId, 'data-product-id: ', +deleteSpan.getAttribute('data-product-id'));
-            console.log(cart);
+            cartItemContainer.remove();
         })
+
         productDetail.appendChild(quantityContainer);
         // append productDetail to its parent cartItemDetails
         cartItemDetails.appendChild(productDetail);

@@ -1,4 +1,4 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, calculateCartQuantity} from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -54,7 +54,7 @@ const getTodayDate = () => {
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
   renderItemsInCartSummary();
-  updateCartQuantity();
+  calculateCartQuantity();
 });
 
 // div in which products in checkout will be listed
@@ -122,8 +122,12 @@ function renderItemsInCartSummary() {
         const updateSpan = document.createElement("span");
         updateSpan.innerHTML = "Update";
         updateSpan.classList.add("update-quantity");
-        updateSpan.setAttribute("data-testid", productId);
+        updateSpan.setAttribute("data-product-update-id", productId);
         quantityContainer.appendChild(updateSpan);
+
+        updateSpan.addEventListener('click', ()=> {
+            console.log(productId, "z  updateSpanu");
+        })
 
         const saveSpan = document.createElement("span");
         saveSpan.innerHTML = "Save";
@@ -142,7 +146,7 @@ function renderItemsInCartSummary() {
             removeFromCart(productId);
             cartItemContainer.remove();
             // when deleting the item from cart also decrease the amount of items of checkout element
-            updateCartQuantity();
+            calculateCartQuantity();
         })
 
         productDetail.appendChild(quantityContainer);
@@ -213,12 +217,4 @@ function getDeliveryOptionElements(index, productId) {
   };
 }
 
-// use module to reuse this function in amazon.js
-export function updateCartQuantity() {
-// calculate total quantity of cart
-const cartTotalQuantity = cart.reduce((accumulator, cartItem)=> accumulator + cartItem.quantity, 0);
-console.log(cartTotalQuantity);
-// parse this value into element for checkout counting items
-const checkoutEl = document.querySelector('.checkout__msg-items');
-checkoutEl.innerHTML = cartTotalQuantity;
-}
+

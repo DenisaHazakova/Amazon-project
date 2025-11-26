@@ -1,8 +1,7 @@
 // with import we can choose in curly brackets which variable we need to use in this file
 // after from we need to specify the file path where the variable is located
-import {cart, saveToStorage} from '../data/cart.js';
+import {cart, saveToStorage, calculateCartQuantity} from '../data/cart.js';
 import {formatCurrency} from "./utils/money.js"
-import {updateCartQuantity} from "./checkout.js";
 
 export const productList = [
   {
@@ -349,7 +348,7 @@ const itemsListEl = document.querySelector(".items__list");
 document.addEventListener("DOMContentLoaded", (event) => {
   renderShopItems();
   renderQuantityDropdown(10);
-  updateCartQuantity();
+  calculateCartQuantity();
 });
 
 function renderQuantityDropdown(parentEl, quantityMax) {
@@ -531,14 +530,13 @@ function renderShopItems() {
     const btnElId = +btnEl.getAttribute("data-id");
     // need to find div element for added message based on id
     const addedMsgElId = +addedMsgEl.getAttribute("data-msg-id");
-    console.log("btnElId", btnElId, "addedMsgElId", addedMsgElId);
 
     // id of button element and div needs to be the same
     if (btnElId === addedMsgElId) {
       // if the ids are the same, we assign class -visible which has opacity 1
       // show the message
       addedMsgEl.classList.add("added-to-cart-message-visible");
-      console.log("toto je addedMsgEl", addedMsgEl);
+      // console.log("toto je addedMsgEl", addedMsgEl);
 
       // Clear any previous timer (in case user clicks multiple times quickly)
       clearTimeout(addedMsgEl._hideTimeOut);

@@ -39,3 +39,13 @@ export function removeFromCart(productId) {
   cart = newCart;
   saveToStorage();
 }
+
+// use module to reuse this function in amazon.js
+export function calculateCartQuantity() {
+// calculate total quantity of cart
+const cartTotalQuantity = cart.reduce((accumulator, cartItem)=> accumulator + cartItem.quantity, 0);
+// console.log(cartTotalQuantity);
+// parse this value into element for checkout counting items
+const checkoutEl = document.querySelector('.checkout__msg-items');
+checkoutEl.innerHTML = cartTotalQuantity;
+}

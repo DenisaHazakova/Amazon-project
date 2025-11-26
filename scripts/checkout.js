@@ -54,6 +54,7 @@ const getTodayDate = () => {
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
   renderItemsInCartSummary();
+  updateCartQuantity();
 });
 
 // div in which products in checkout will be listed
@@ -140,6 +141,8 @@ function renderItemsInCartSummary() {
         deleteSpan.addEventListener('click', ()=> {
             removeFromCart(productId);
             cartItemContainer.remove();
+            // when deleting the item from cart also decrease the amount of items of checkout element
+            updateCartQuantity();
         })
 
         productDetail.appendChild(quantityContainer);
@@ -177,6 +180,7 @@ function renderItemsInCartSummary() {
         cartItemContainer.appendChild(cartItemDetails);
         // append cartItemContainer to its parent
         itemsSumaryDiv.appendChild(cartItemContainer);
+
       }
     }
   }
@@ -207,4 +211,13 @@ function getDeliveryOptionElements(index, productId) {
     deliveryOptionDate,
     freeShippingCost,
   };
+}
+
+function updateCartQuantity() {
+// calculate total quantity of cart
+const cartTotalQuantity = cart.reduce((accumulator, cartItem)=> accumulator + cartItem.quantity, 0);
+console.log(cartTotalQuantity);
+// parse this value into element for checkout counting items
+const checkoutEl = document.querySelector('.checkout__msg-items');
+checkoutEl.innerHTML = cartTotalQuantity;
 }

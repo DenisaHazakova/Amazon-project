@@ -129,6 +129,12 @@ function renderItemsInCartSummary() {
             console.log(productId, "z  updateSpanu");
         })
 
+        // create input element for entering a new quantity in case of update link is clicked
+        const quanityInput = document.createElement('input');
+        quanityInput.classList.add('quantity-input');
+        quantityContainer.appendChild(quanityInput);
+
+        // span created for save the changes made
         const saveSpan = document.createElement("span");
         saveSpan.innerHTML = "Save";
         saveSpan.classList.add("save-quantity");

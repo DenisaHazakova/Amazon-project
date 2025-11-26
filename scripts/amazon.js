@@ -2,6 +2,7 @@
 // after from we need to specify the file path where the variable is located
 import {cart, saveToStorage} from '../data/cart.js';
 import {formatCurrency} from "./utils/money.js"
+import {updateCartQuantity} from "./checkout.js";
 
 export const productList = [
   {
@@ -348,6 +349,7 @@ const itemsListEl = document.querySelector(".items__list");
 document.addEventListener("DOMContentLoaded", (event) => {
   renderShopItems();
   renderQuantityDropdown(10);
+  updateCartQuantity();
 });
 
 function renderQuantityDropdown(parentEl, quantityMax) {

@@ -3,7 +3,7 @@
 // as we want to get them, we use methos getItem
 // localStorage works only with strings but we want to get object back
 // we use JSON.parse to get object
-export let cart = localStorage.getItem('cart', JSON.parse(cart));
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
 // if cart is empty we set the cart with following default values
 if(!cart) {

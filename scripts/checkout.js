@@ -213,7 +213,8 @@ function getDeliveryOptionElements(index, productId) {
   };
 }
 
-function updateCartQuantity() {
+// use module to reuse this function in amazon.js
+export function updateCartQuantity() {
 // calculate total quantity of cart
 const cartTotalQuantity = cart.reduce((accumulator, cartItem)=> accumulator + cartItem.quantity, 0);
 console.log(cartTotalQuantity);

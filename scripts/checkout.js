@@ -127,6 +127,7 @@ function renderItemsInCartSummary() {
 
         updateSpan.addEventListener('click', ()=> {
             console.log(productId, "z  updateSpanu");
+            cartItemContainer.classList.add('is-editing-quantity');
         })
 
         // create input element for entering a new quantity in case of update link is clicked

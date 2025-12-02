@@ -346,6 +346,7 @@ const itemsListEl = document.querySelector(".items__list");
 
 // With DOMContent Loaded we ensure that when DOM is loaded, then function renderShopItems is called
 document.addEventListener("DOMContentLoaded", (event) => {
+  document.querySelector('.cart__quantity').innerHTML = cart.reduce((accumulator, carttItem) => accumulator + carttItem.quantity, 0);
   renderShopItems();
   renderQuantityDropdown(10);
   calculateCartQuantity();
@@ -493,6 +494,7 @@ function renderShopItems() {
     const productEl = document.querySelector(
       `[data-product-id="${productId}"]`
     );
+    // console.log(cart);
     // find the select element
     const selectEl = productEl.querySelector("select");
     // find the value of select, make it a number

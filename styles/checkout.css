@@ -141,22 +141,10 @@ body {
   color: #017cb6;
 }
 
-
-
-
-
-
 .is-editing-quantity .save-quantity {
-  display: initial; /* show save link 
+  display: initial; /* show save link */
   margin-right: 5px;
-} */
-
-/* if class .is-editing-quantity exists, then it means update links is clicked */
-/* when update link is clicked, save link with input are displayes */
-/* so we want to hide update link in this moment */
-/* .is-editing-quantity .update-quantity {
-  display: none;
-} */
+} 
 
 .dlvrOptsContainer {
   grid-column: 2/3;

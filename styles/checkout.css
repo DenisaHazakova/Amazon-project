@@ -127,16 +127,12 @@ body {
   grid-row: 3/4;
 }
 
-/* update link */
-.update-quantity {
-  cursor: pointer;
-  color: #017cb6;
-  margin-right: 5px;
-}
+
 /* when click on update, input for editing appears */
 .quantity-input {
-  width: 30px;
-  display: none; /* hidden at start */
+  width: 50px;
+  height: 20px;
+  margin-right: 1rem;
 }
 
 /* delete link */
@@ -145,29 +141,22 @@ body {
   color: #017cb6;
 }
 
-/* after update link clicked, save link will display */
-.save-quantity {
-  color: #017cb6;
-  cursor: pointer;
-  display: none; /*hidden at start */
-}
 
-.is-editing-quantity .quantity-input {
-   display: initial; /* show input */
-   margin-right: 5px;
-}
+
+
+
 
 .is-editing-quantity .save-quantity {
-  display: initial; /* show save link */
+  display: initial; /* show save link 
   margin-right: 5px;
-}
+} */
 
 /* if class .is-editing-quantity exists, then it means update links is clicked */
 /* when update link is clicked, save link with input are displayes */
 /* so we want to hide update link in this moment */
-.is-editing-quantity .update-quantity {
+/* .is-editing-quantity .update-quantity {
   display: none;
-}
+} */
 
 .dlvrOptsContainer {
   grid-column: 2/3;

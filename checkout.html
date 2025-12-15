@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/checkout.css" />
+    <title>Checkout</title>
+  </head>
+  <body>
+    <!-- <div class="main__container"> -->
+    <header class="header__section">
+      <a href="amazon.html" class="header__amazon-logo"
+        ><img src="./img/amazon-logo.png" alt="Amazon icon" class="amazon__logo"
+      /></a>
+      <section class="checkout__msg">
+        Checkout (<a href="#" class="checkout__msg-items"></a>)
+      </section>
+      <img src="./img/icons/checkout-lock-icon.png" alt="Lock logo" />
+    </header>
+    <main class="checkout__container">
+      <h4 class="heading_4">Review your order</h4>
+      <div class="cart__summary"></div>
+      <div class="payment__summary">
+        <div class="payment__info">
+          <h5 class="heading_5">Order summary</h5>
+          <div class="payment__info-items">
+            <span class="items__number">Items (12):</span>
+            <span class="items__price">$ 210</span>
+          </div>
+          <div class="payment__info-shipping">
+            <span class="shipping">Shipping & handling:</span>
+            <span class="shipping__price">$ 0.00</span>
+          </div>
+          <div class="payment__info-beforeTax">
+            <span class="before-tax">Total before tax</span>
+            <span class="before-tax__price">$ 210</span>
+          </div>
+          <div class="payment__info-tax">
+            <span class="after-tax">Estimated tax (10%):</span>
+            <span class="after-tax__price">$ 21.07</span>
+          </div>
+          <div class="payment__info-total">
+            <span class="info-total">Order total:</span>
+            <span class="total__price">$ 231</span>
+          </div>
+        </div>
+        <button class="place-your-order-btn">Place your order</button>
+      </div>
+    </main>
+    <!-- </div> -->
+    <script type="module" src="./scripts/checkout.js"></script>
+  </body>
+</html>

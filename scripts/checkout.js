@@ -1,4 +1,4 @@
-import { cart, removeFromCart, calculateCartQuantity} from "../data/cart.js";
+import { cart, removeFromCart, calculateCartQuantity } from "../data/cart.js";
 import { productList } from "../scripts/amazon.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -119,29 +119,30 @@ function renderItemsInCartSummary() {
         quantityContainer.appendChild(cartItemQuantity);
 
         // create spans element for buttons update, save and delete
-        const updateSpan = document.createElement("span");
-        updateSpan.innerHTML = "Update";
-        updateSpan.classList.add("update-quantity");
-        updateSpan.setAttribute("data-product-update-id", productId);
-        quantityContainer.appendChild(updateSpan);
+        // const updateSpan = document.createElement("span");
+        // updateSpan.innerHTML = "Update";
+        // updateSpan.classList.add("update-quantity");
+        // updateSpan.setAttribute("data-product-update-id", productId);
+        // quantityContainer.appendChild(updateSpan);
 
-        updateSpan.addEventListener('click', ()=> {
-            console.log(productId, "z  updateSpanu");
-            cartItemContainer.classList.add('is-editing-quantity');
-        })
+        // updateSpan.addEventListener('click', ()=> {
+        //     console.log(productId, "z  updateSpanu");
+        //     cartItemContainer.classList.add('is-editing-quantity');
+        // })
 
         // create input element for entering a new quantity in case of update link is clicked
-        const quanityInput = document.createElement('input');
-        quanityInput.classList.add('quantity-input');
-        quantityContainer.appendChild(quanityInput);
+        // const quanityInput = document.createElement('input');
+        // quanityInput.classList.add('quantity-input');
+        // quantityContainer.appendChild(quanityInput);
 
         // span created for save the changes made
-        const saveSpan = document.createElement("span");
-        saveSpan.innerHTML = "Save";
-        saveSpan.classList.add("save-quantity");
-        saveSpan.setAttribute("data-testid", productId);
-        quantityContainer.appendChild(saveSpan);
+        // const saveSpan = document.createElement("span");
+        // saveSpan.innerHTML = "Save";
+        // saveSpan.classList.add("save-quantity");
+        // saveSpan.setAttribute("data-testid", productId);
+        // quantityContainer.appendChild(saveSpan);
 
+        // span created for delete the element
         const deleteSpan = document.createElement("span");
         deleteSpan.innerHTML = "Delete";
         deleteSpan.classList.add("delete-quantity");
@@ -149,11 +150,11 @@ function renderItemsInCartSummary() {
         quantityContainer.appendChild(deleteSpan);
 
         // after click on delete span the container will be removed from the DOM
-        deleteSpan.addEventListener('click', ()=> {
-            removeFromCart(productId);
-            cartItemContainer.remove();
-            // when deleting the item from cart also decrease the amount of items of checkout element
-            calculateCartQuantity();
+        deleteSpan.addEventListener('click', () => {
+          removeFromCart(productId);
+          cartItemContainer.remove();
+          // when deleting the item from cart also decrease the amount of items of checkout element
+          calculateCartQuantity();
         })
 
         productDetail.appendChild(quantityContainer);
@@ -165,22 +166,26 @@ function renderItemsInCartSummary() {
         dlvrOptsContainer.classList.add("dlvrOptsContainer");
 
         // delivery options paragraph text
-        const deliveryTextSpan = document.createElement("span");
+        const deliveryTextSpan = document.createElement("div");
         deliveryTextSpan.innerHTML = "Choose a delivery option:";
         deliveryTextSpan.classList.add("deliveryTextSpan");
         dlvrOptsContainer.appendChild(deliveryTextSpan);
 
+        // container for each delivery option
+        const dlvrOptn = document.createElement('div');
+        dlvrOptn.classList.add('dlvrOptn');
+        dlvrOptsContainer.appendChild(dlvrOptn);
         // create 3 radio buttons
         for (let i = 0; i <= 2; i++) {
           const deliveryOptionElements = getDeliveryOptionElements(
             i,
             product.id
           );
-          dlvrOptsContainer.appendChild(deliveryOptionElements.radioBtn);
-          dlvrOptsContainer.appendChild(
+          dlvrOptn.appendChild(deliveryOptionElements.radioBtn);
+          dlvrOptn.appendChild(
             deliveryOptionElements.deliveryOptionDate
           );
-          dlvrOptsContainer.appendChild(
+          dlvrOptn.appendChild(
             deliveryOptionElements.freeShippingCost
           );
         }
@@ -203,7 +208,7 @@ function getDeliveryOptionElements(index, productId) {
   // delivery option text
   const deliveryOptionDate = document.createElement("span");
   deliveryOptionDate.innerHTML =
-    date.weekDay + ", " + date.month + " " + (date.day+index);
+    date.weekDay + ", " + date.month + " " + (date.day + index);
   deliveryOptionDate.classList.add("deliveryOptionDate");
 
   // cost of shipping in case of radio button is selected

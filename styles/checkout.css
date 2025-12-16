@@ -117,9 +117,26 @@ body {
   font-weight: 700;
 }
 
+.quantityContainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  grid-template-rows: 1fr;
+}
+
 .cartItemQuantity {
-  grid-row: 3/4;
+  grid-row: 1/1;
   margin-right: 0.5em;
+  width: 2rem;
+}
+
+.cartItemQuantityText {
+  margin: 0;
+  grid-row: 1/1;
+  margin-right: 0.7rem;
+}
+
+.delete-quantity {
+  grid-row: 1/1;
 }
 
 /* include update, save, delete spans elements */

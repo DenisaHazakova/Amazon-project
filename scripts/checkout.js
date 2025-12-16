@@ -113,34 +113,16 @@ function renderItemsInCartSummary() {
         quantityContainer.classList.add("quantityContainer");
 
         // create quantity
-        const cartItemQuantity = document.createElement("span");
+        const cartItemQuantityText = document.createElement('p');
+        cartItemQuantityText.innerHTML = 'Quantity:';
+        cartItemQuantityText.classList.add('cartItemQuantityText');
+        const cartItemQuantity = document.createElement("input");
+        cartItemQuantity.type = "number";
+        cartItemQuantity.min = "0";
         cartItemQuantity.classList.add("cartItemQuantity");
-        cartItemQuantity.innerHTML = "Quantity: " + cartItem.quantity;
+        cartItemQuantity.value =  cartItem.quantity;
+        quantityContainer.appendChild(cartItemQuantityText);
         quantityContainer.appendChild(cartItemQuantity);
-
-        // create spans element for buttons update, save and delete
-        // const updateSpan = document.createElement("span");
-        // updateSpan.innerHTML = "Update";
-        // updateSpan.classList.add("update-quantity");
-        // updateSpan.setAttribute("data-product-update-id", productId);
-        // quantityContainer.appendChild(updateSpan);
-
-        // updateSpan.addEventListener('click', ()=> {
-        //     console.log(productId, "z  updateSpanu");
-        //     cartItemContainer.classList.add('is-editing-quantity');
-        // })
-
-        // create input element for entering a new quantity in case of update link is clicked
-        // const quanityInput = document.createElement('input');
-        // quanityInput.classList.add('quantity-input');
-        // quantityContainer.appendChild(quanityInput);
-
-        // span created for save the changes made
-        // const saveSpan = document.createElement("span");
-        // saveSpan.innerHTML = "Save";
-        // saveSpan.classList.add("save-quantity");
-        // saveSpan.setAttribute("data-testid", productId);
-        // quantityContainer.appendChild(saveSpan);
 
         // span created for delete the element
         const deleteSpan = document.createElement("span");

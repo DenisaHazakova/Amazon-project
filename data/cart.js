@@ -28,15 +28,7 @@ export function saveToStorage() {
 
 // function for removing a product from cart
 export function removeFromCart(productId) {
-  const newCart = [];
-
-  for(const cartItem of cart) {
-    if(cartItem.productId !== productId) {
-      newCart.push(cartItem);
-    }
-  }
-
-  cart = newCart;
+  cart = cart.filter(cartItem => cartItem.productId !== productId);
   saveToStorage();
 }
 

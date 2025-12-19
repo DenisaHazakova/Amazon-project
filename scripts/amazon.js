@@ -521,6 +521,7 @@ function renderShopItems() {
     //  add quantity into inner html
     document.querySelector(".cart__quantity").innerHTML = cartQuantity;
     saveToStorage();
+    
   }
 
   function onDisplayMessage(productId) {
